@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import AuthDialog from "./AuthDialog";
-import { Menu, X, Home, Target, Presentation, TrendingUp, Search, BarChart3, Globe, Bot } from "lucide-react";
+import { Menu, X, Home, Target, Presentation, TrendingUp, Search, BarChart3, Globe, Bot, Instagram } from "lucide-react";
 
 const links = [
   { href: "/", label: "Home", icon: Home },
@@ -14,6 +14,7 @@ const links = [
   { href: "/ai_pitch_deck_builder", label: "AI Pitch Deck Builder", icon: Presentation },
   { href: "/funding_trends", label: "Funding Trends", icon: TrendingUp },
   { href: "/mvp_builder", label: "MVP Builder", icon: Globe },
+  { href: "/instagram_leads", label: "Instagram Leads", icon: Instagram },
 ];
 
 function ElegantShape({
