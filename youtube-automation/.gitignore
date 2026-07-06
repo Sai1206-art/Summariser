@@ -1,0 +1,8 @@
+.env
+client_secret*.json
+output/
+state/
+assets/music/*
+!assets/music/.gitkeep
+__pycache__/
+*.pyc

@@ -1,0 +1,219 @@
+# ============================================================================
+# Niche presets. Each preset drives topic ideation, script tone, voice,
+# stock-footage queries, SEO and thumbnail styling.
+#
+# RPM figures are rough US-audience ranges for planning only.
+# ============================================================================
+
+psychology:
+  label: "Psychology & Human Behavior"
+  why: >
+    Fast-growing faceless niche with evergreen demand, extremely high retention
+    (people finish "why your brain does X" videos), low production cost and a
+    broad 18-45 audience. RPM ~$4-9. The best pick for reaching 4,000 watch
+    hours quickly.
+  audience: "curious 18-45 year olds interested in self-improvement and how the mind works"
+  tone: "calm, intriguing, slightly mysterious; grounded in real research, never preachy"
+  voice: en-US-ChristopherNeural
+  music_mood: "dark ambient, minimal piano"
+  thumbnail:
+    bg_color: "#0d1321"
+    accent_color: "#ffd166"
+    text_color: "#ffffff"
+  visual_style: "moody cinematic b-roll, silhouettes, brain imagery, city nights, rain windows, chess, mirrors"
+  hashtags: ["#psychology", "#humanbehavior", "#selfimprovement"]
+  title_patterns:
+    - "Why Your Brain {does_x}"
+    - "The Psychology Behind {x}"
+    - "{n} Signs Someone Is {x}"
+    - "How {x} Secretly Controls You"
+  topic_seeds:
+    - "why smart people stay quiet in groups"
+    - "the psychology of first impressions"
+    - "how dopamine detox actually works"
+    - "why we procrastinate on things we love"
+    - "signs of a highly observant person"
+    - "the spotlight effect: nobody is watching you"
+    - "why silence makes people uncomfortable"
+    - "how your brain decides who to trust in 7 seconds"
+    - "the psychology of luxury brands"
+    - "why we remember embarrassing moments forever"
+    - "dark psychology tricks used in advertising"
+    - "why eye contact feels so intense"
+    - "the habits of people who never get manipulated"
+    - "why your best ideas come in the shower"
+    - "how colors secretly change your decisions"
+    - "the psychology of people who prefer being alone"
+    - "why we mirror people we like"
+    - "how scarcity makes you want things more"
+    - "the real reason you can't stop scrolling"
+    - "why deadlines make you more creative"
+    - "psychology of charisma: why some people pull attention"
+    - "why your memory rewrites the past"
+    - "the anchoring effect: the first number wins"
+    - "why we trust confident people even when they're wrong"
+
+finance:
+  label: "Personal Finance & Money"
+  why: >
+    Highest RPM of any mainstream niche (~$12-30) because advertisers pay a
+    premium for finance audiences. More competitive and YMYL-sensitive: scripts
+    must be educational, sourced and non-advisory. Best combined with
+    psychology-style storytelling.
+  audience: "20-45 year olds trying to earn, save and invest smarter"
+  tone: "clear, direct, practical; educational not advisory; no hype, no get-rich-quick"
+  voice: en-US-GuyNeural
+  music_mood: "upbeat minimal electronic"
+  thumbnail:
+    bg_color: "#07231c"
+    accent_color: "#3ddc84"
+    text_color: "#ffffff"
+  visual_style: "city skylines, cash close-ups, charts on screens, offices, watches, calm luxury"
+  hashtags: ["#personalfinance", "#money", "#investing"]
+  title_patterns:
+    - "How {x} Keeps You Poor"
+    - "The {n} Money Rules Nobody Taught You"
+    - "Why the Rich {do_x}"
+    - "{x}, Explained in {n} Minutes"
+  topic_seeds:
+    - "the psychology of why we buy things we don't need"
+    - "how compound interest actually works"
+    - "lifestyle inflation: the silent salary killer"
+    - "why the rich buy assets and the poor buy liabilities"
+    - "the 50/30/20 rule and when it fails"
+    - "how credit scores really work"
+    - "why saving alone will never make you wealthy"
+    - "the latte factor is a lie: what actually matters"
+    - "how inflation quietly taxes your savings"
+    - "why most people lose money trading"
+    - "the real cost of buying a new car"
+    - "emergency funds: how much is actually enough"
+    - "why lottery winners go broke"
+    - "the index fund strategy explained simply"
+    - "how banks make money from your deposits"
+    - "why your first $10,000 is the hardest"
+    - "the hidden fees eating your investments"
+    - "renting vs buying: the math nobody shows you"
+    - "how the 1% legally pay less tax"
+    - "why budgets fail and what works instead"
+
+ai_tech:
+  label: "AI & Future Tech"
+  why: >
+    Explosive search demand and strong RPM (~$8-15). Fresh topics weekly means
+    less evergreen value but big early-view spikes. Great for channels that can
+    ship 3+ videos a week.
+  audience: "tech-curious 18-40 year olds tracking AI and the future of work"
+  tone: "energetic, curious, hype-free; explain like a smart friend, cite what's real vs speculation"
+  voice: en-US-GuyNeural
+  music_mood: "futuristic synth, glitch"
+  thumbnail:
+    bg_color: "#0a0e2a"
+    accent_color: "#4cc9f0"
+    text_color: "#ffffff"
+  visual_style: "server rooms, robots, neon circuits, futuristic cities, code on screens, labs"
+  hashtags: ["#ai", "#technology", "#future"]
+  title_patterns:
+    - "{x} Just Changed Everything"
+    - "How {x} Actually Works"
+    - "The Truth About {x}"
+    - "{n} AI Tools That Feel Illegal to Know"
+  topic_seeds:
+    - "how large language models actually work"
+    - "jobs AI will change first and what to do about it"
+    - "the real cost of training an AI model"
+    - "how AI image generators work"
+    - "what AGI actually means"
+    - "why AI chatbots hallucinate"
+    - "how self-driving cars see the world"
+    - "the chips powering the AI boom"
+    - "AI in medicine: what's real today"
+    - "how recommendation algorithms shape what you think"
+    - "the history of AI winters"
+    - "what happens inside a data center"
+    - "AI agents: software that works while you sleep"
+    - "how deepfakes work and how to spot them"
+    - "the energy problem behind AI"
+    - "why open-source AI matters"
+    - "how AI learns from human feedback"
+    - "quantum computing explained simply"
+
+history:
+  label: "History & Mysteries"
+  why: >
+    Deep-watch niche with the longest average view durations — ideal for
+    accumulating watch hours. RPM ~$5-10. Slower growth but extremely durable
+    back-catalog views.
+  audience: "25-60 year olds who love documentaries and unsolved stories"
+  tone: "narrative documentary style; build tension, respect the facts, no sensationalism"
+  voice: en-GB-RyanNeural
+  music_mood: "orchestral tension, ambient drones"
+  thumbnail:
+    bg_color: "#1a120b"
+    accent_color: "#e07a2f"
+    text_color: "#f5ecd7"
+  visual_style: "old maps, ruins, archives, candlelight, museums, storms, ancient architecture"
+  hashtags: ["#history", "#documentary", "#mystery"]
+  title_patterns:
+    - "The {x} History Tried to Forget"
+    - "What Really Happened at {x}"
+    - "{x}: The Untold Story"
+    - "How {x} Changed the World Forever"
+  topic_seeds:
+    - "the library of alexandria: what we actually lost"
+    - "the dancing plague of 1518"
+    - "how the silk road really worked"
+    - "the lost colony of roanoke"
+    - "the great emu war"
+    - "why the bronze age collapsed"
+    - "the man who saved the world by doing nothing"
+    - "the london beer flood"
+    - "how venice was built on water"
+    - "the year without a summer"
+    - "the antikythera mechanism: an ancient computer"
+    - "carrington event: the solar storm that broke the world"
+    - "the real pirates of the caribbean"
+    - "how spices started empires"
+    - "the halifax explosion"
+    - "why easter island's civilization vanished"
+    - "the oracle of delphi: science behind the myth"
+    - "the great molasses flood of boston"
+
+space:
+  label: "Space & Science"
+  why: >
+    Evergreen fascination, high retention, family-safe advertiser-friendly
+    content. RPM ~$6-12. Stock space footage is plentiful and stunning, which
+    makes production quality look expensive.
+  audience: "all-ages science-curious viewers"
+  tone: "awe-driven but precise; make scale feel visceral; separate fact from hypothesis"
+  voice: en-US-ChristopherNeural
+  music_mood: "epic ambient, slow builds"
+  thumbnail:
+    bg_color: "#02010f"
+    accent_color: "#9d4edd"
+    text_color: "#ffffff"
+  visual_style: "nebulas, rocket launches, planets, telescopes, astronauts, night skies, deep ocean"
+  hashtags: ["#space", "#science", "#universe"]
+  title_patterns:
+    - "What's Really Inside {x}"
+    - "The Terrifying Scale of {x}"
+    - "Why {x} Shouldn't Exist"
+    - "{x}, Explained"
+  topic_seeds:
+    - "what happens inside a black hole"
+    - "the terrifying scale of the universe"
+    - "why we can't go faster than light"
+    - "the great filter: where is everybody"
+    - "how the james webb telescope sees the past"
+    - "what the sun will do to earth eventually"
+    - "rogue planets: worlds without stars"
+    - "the sound of space: what we've actually recorded"
+    - "why venus went wrong"
+    - "the oceans hiding inside icy moons"
+    - "how we know the big bang happened"
+    - "neutron stars: the densest things that exist"
+    - "the voyager probes: humanity's farthest machines"
+    - "why mars lost its atmosphere"
+    - "gravitational waves explained"
+    - "the dark matter mystery"
