@@ -59,6 +59,32 @@ python run.py auth                         # one-time YouTube OAuth
 python run.py upload --latest --schedule-next
 ```
 
+### Daily AI-news show (avatar presenter) — the flagship format
+
+`produce --format news` builds a ~5-minute daily AI-news episode:
+
+1. **Live research** — Claude web-searches the last 48h of AI news and writes a
+   sourced, story-structured anchor script (real news, no invented facts).
+2. **Presenter** — a licensed HeyGen avatar delivers the anchor lines over a
+   tech background. *No HeyGen key yet? It runs in **voice + visuals** mode
+   automatically, so you can test today and add the avatar later.*
+3. **Infographics + b-roll** — story details cut to generated infographic cards
+   and tech stock footage.
+4. **Package** — thumbnail, SEO title/description with the day's headlines and
+   **source links**, ready for review.
+
+```bash
+python run.py produce --format news        # today's episode
+```
+
+**To turn on the avatar:**
+1. Create a HeyGen account (heygen.com, ~$29/mo Creator plan) → Settings → API → copy the key into `HEYGEN_API_KEY` (in `.env`, and as a GitHub secret for cloud runs).
+2. `python run.py avatars` — lists your avatar and voice IDs.
+3. Put your chosen `avatar_id` and `voice_id` into `config/channel.yaml` under `avatar:`.
+
+That's the only paid piece; everything else (news, voice fallback, footage,
+assembly) is free.
+
 ### Run it in the cloud (recommended)
 
 `.github/workflows/youtube-daily.yml` produces a video **daily at 09:00 UTC on
@@ -67,7 +93,8 @@ GitHub's servers** — no local machine needed. Setup:
 1. **Merge this branch to `main`** — scheduled workflows only fire from the
    default branch. (Manual runs from the Actions tab work as soon as it's there.)
 2. **Add repository secrets** (Settings → Secrets and variables → Actions):
-   `ANTHROPIC_API_KEY`, `PEXELS_API_KEY` (and optionally `PIXABAY_API_KEY`).
+   `ANTHROPIC_API_KEY`, `PEXELS_API_KEY` (and optionally `PIXABAY_API_KEY`, and
+   `HEYGEN_API_KEY` for the avatar presenter).
 3. Each run attaches the finished package as a **workflow artifact** — download,
    review, and publish it whenever you like.
 4. **Optional — publish straight from the cloud:** run `python run.py auth`

@@ -36,6 +36,58 @@ def _wrap(draw: ImageDraw.ImageDraw, text: str, font, max_w: int) -> list[str]:
     return lines[:3]
 
 
+def make_card(
+    headline: str,
+    out: Path,
+    theme: dict,
+    subtext: str = "",
+    resolution: tuple[int, int] = (1920, 1080),
+) -> Path:
+    """Full-frame infographic card: tech background + big stat/label text."""
+    w, h = resolution
+    bg = _hex(theme.get("bg_color", "#0a0e2a"))
+    accent = _hex(theme.get("accent_color", "#4cc9f0"))
+    fg = _hex(theme.get("text_color", "#ffffff"))
+
+    img = Image.new("RGB", (w, h), bg)
+    draw = ImageDraw.Draw(img)
+
+    # subtle grid + accent bar for a "tech infographic" feel
+    step = max(40, h // 18)
+    grid = tuple(min(255, c + 12) for c in bg)
+    for x in range(0, w, step):
+        draw.line([(x, 0), (x, h)], fill=grid, width=1)
+    for y in range(0, h, step):
+        draw.line([(0, y), (w, y)], fill=grid, width=1)
+    draw.rectangle([0, 0, int(w * 0.02), h], fill=accent)
+
+    text = headline.upper().strip() or "AI NEWS"
+    size = int(h * 0.13)
+    font = _font(size)
+    max_w = int(w * 0.82)
+    lines = _wrap(draw, text, font, max_w)
+    while size > 40 and (len(lines) > 3 or any(draw.textlength(l, font=font) > max_w for l in lines)):
+        size -= 6
+        font = _font(size)
+        lines = _wrap(draw, text, font, max_w)
+
+    line_h = int(size * 1.15)
+    total = line_h * len(lines)
+    y = (h - total) // 2 - (int(h * 0.04) if subtext else 0)
+    x = int(w * 0.09)
+    for i, line in enumerate(lines):
+        draw.text((x, y + i * line_h), line, font=font, fill=fg,
+                  stroke_width=max(2, size // 20), stroke_fill=(0, 0, 0))
+
+    if subtext:
+        sfont = _font(int(h * 0.045))
+        draw.text((x, y + total + int(h * 0.03)), subtext.upper()[:60],
+                  font=sfont, fill=accent, stroke_width=2, stroke_fill=(0, 0, 0))
+
+    img.save(out, "JPEG", quality=92)
+    return out
+
+
 def make_thumbnail(
     text: str,
     out: Path,
