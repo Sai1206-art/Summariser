@@ -1,0 +1,15 @@
+# Core pipeline
+pyyaml>=6.0
+python-dotenv>=1.0
+requests>=2.31
+Pillow>=10.0
+imageio-ffmpeg>=0.4.9        # bundles a static ffmpeg binary (with libass for captions)
+edge-tts>=6.1                # free Microsoft neural text-to-speech
+
+# Script generation (optional but strongly recommended for original content)
+anthropic>=0.40
+
+# YouTube upload
+google-api-python-client>=2.100
+google-auth-oauthlib>=1.1
+google-auth-httplib2>=0.1

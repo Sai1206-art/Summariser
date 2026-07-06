@@ -1,0 +1,50 @@
+# ============================================================================
+# Channel configuration — edit this file to shape your channel.
+# ============================================================================
+
+# Which niche preset to use (see config/niches.yaml):
+#   psychology | finance | ai_tech | history | space
+niche: psychology
+
+channel:
+  name: "MindUnlocked"            # your channel name (used in descriptions/CTAs)
+  handle: "@mindunlocked"         # your @handle
+  language: en
+  country: US
+
+video:
+  # Long-form target length in minutes (8-12 min is the monetization sweet spot:
+  # enough for mid-roll ads, still holds retention)
+  target_minutes: 8
+  resolution: [1920, 1080]
+  fps: 30
+  burn_captions: true             # burn styled captions into the video
+  background_music: true          # mix in music from assets/music/ if present
+  music_volume_db: -24            # music level under the voiceover
+
+shorts:
+  target_seconds: 45
+  resolution: [1080, 1920]
+  burn_captions: true
+
+voice:
+  provider: edge                  # edge (free) | elevenlabs
+  # Voice is normally taken from the niche preset; override here if you like.
+  # Good edge-tts options: en-US-ChristopherNeural (deep male),
+  # en-US-GuyNeural, en-US-JennyNeural, en-GB-RyanNeural, en-AU-WilliamNeural
+  override_voice: ""
+  rate: "+8%"                     # slight speed-up improves retention
+  pitch: "+0Hz"
+
+upload:
+  privacy: private                # private | unlisted | public  (keep private until you review!)
+  category_id: "27"               # 27=Education, 28=Science&Tech, 24=Entertainment
+  made_for_kids: false
+  # Publish schedule (used with `run.py upload --schedule-next`): local-time slots
+  schedule_times: ["15:00"]       # 3pm daily — adjust to your audience analytics
+  auto_upload: false              # true = `daily` command uploads without review (not recommended at first)
+
+# Safety/compliance switches
+compliance:
+  require_review: true            # `daily` stops at the review gate unless auto_upload
+  ai_disclosure: true             # adds an "altered or synthetic content" note + flag guidance
