@@ -10,6 +10,15 @@
       "minutes": 3.21,
       "demo": true,
       "produced_at": "2026-07-06T13:57:52.539890+00:00"
+    },
+    {
+      "topic": "AI news 20260706-1630",
+      "folder": "/home/runner/work/Summariser/Summariser/youtube-automation/output/20260706-1630-news-today-in-ai-the-stories-that-actually-matter",
+      "format": "news",
+      "minutes": 0.96,
+      "demo": true,
+      "avatar": false,
+      "produced_at": "2026-07-06T16:31:09.436993+00:00"
     }
   ],
   "uploads": []
