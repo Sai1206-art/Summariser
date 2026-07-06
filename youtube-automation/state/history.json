@@ -1,5 +1,16 @@
 {
-  "topics_used": [],
-  "produced": [],
+  "topics_used": [
+    "why smart people stay quiet in groups"
+  ],
+  "produced": [
+    {
+      "topic": "why smart people stay quiet in groups",
+      "folder": "/home/runner/work/Summariser/Summariser/youtube-automation/output/20260706-1353-long-why-smart-people-stay-quiet-in-groups",
+      "format": "long",
+      "minutes": 3.21,
+      "demo": true,
+      "produced_at": "2026-07-06T13:57:52.539890+00:00"
+    }
+  ],
   "uploads": []
 }
