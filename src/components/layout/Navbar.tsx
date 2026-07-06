@@ -5,13 +5,14 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import AuthDialog from "./AuthDialog";
-import { Menu, X, Home, Target, Presentation, TrendingUp, Search, BarChart3, Globe, Bot } from "lucide-react";
+import { Menu, X, Home, Target, Presentation, TrendingUp, Search, BarChart3, Globe, Bot, Youtube } from "lucide-react";
 
 const links = [
   { href: "/", label: "Home", icon: Home },
   { href: "/market_analysis", label: "Market Analysis", icon: BarChart3 },
   { href: "/ai_researcher_agent", label: "AI Researcher", icon: Bot },
   { href: "/ai_pitch_deck_builder", label: "AI Pitch Deck Builder", icon: Presentation },
+  { href: "/tube_gen", label: "TubeGen AI", icon: Youtube },
   { href: "/funding_trends", label: "Funding Trends", icon: TrendingUp },
   { href: "/mvp_builder", label: "MVP Builder", icon: Globe },
 ];
