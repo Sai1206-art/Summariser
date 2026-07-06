@@ -3,8 +3,8 @@
 # ============================================================================
 
 # Which niche preset to use (see config/niches.yaml):
-#   psychology | finance | ai_tech | history | space
-niche: psychology
+#   ai_news | psychology | finance | ai_tech | history | space
+niche: ai_news
 
 channel:
   name: "MindUnlocked"            # your channel name (used in descriptions/CTAs)
@@ -13,9 +13,9 @@ channel:
   country: US
 
 video:
-  # Long-form target length in minutes (8-12 min is the monetization sweet spot:
-  # enough for mid-roll ads, still holds retention)
-  target_minutes: 8
+  # Target length in minutes. AI-news shows work best at 5-6 min; long-form
+  # storytelling niches monetize best at 8-12 (mid-roll ads + retention).
+  target_minutes: 5
   resolution: [1920, 1080]
   fps: 30
   burn_captions: true             # burn styled captions into the video
@@ -26,6 +26,16 @@ shorts:
   target_seconds: 45
   resolution: [1080, 1920]
   burn_captions: true
+
+# AI-avatar presenter (for `produce --format news`). Needs HEYGEN_API_KEY.
+# Without it, news videos are produced in voice + visuals mode instead.
+avatar:
+  provider: heygen                # heygen | none
+  avatar_id: ""                   # run `python run.py avatars` to list options
+  voice_id: ""                    # a HeyGen voice id (from `avatars`)
+  avatar_style: normal
+  background: "#0a0e2a"           # hex tech background, or a public image URL
+  speed: 1.0
 
 voice:
   provider: edge                  # edge (free) | elevenlabs

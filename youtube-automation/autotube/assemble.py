@@ -119,3 +119,66 @@ def assemble(
 def grab_frame(video: Path, t: float, out: Path) -> Path:
     ff.run(["-ss", f"{t:.2f}", "-i", str(video), "-frames:v", "1", "-q:v", "2", str(out)])
     return out
+
+
+# ---------------------------------------------------------------------------
+# AI-news assembly: per-segment clips (each with its own audio), then concat
+# ---------------------------------------------------------------------------
+
+def normalize_av(src: Path, res: tuple[int, int], fps: int, out: Path) -> Path:
+    """Re-encode any source clip (with audio) to uniform res/fps/codecs."""
+    w, h = res
+    ff.run(
+        ["-i", str(src),
+         "-vf", f"scale={w}:{h}:force_original_aspect_ratio=increase,"
+                f"crop={w}:{h},fps={fps},setsar=1",
+         "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-pix_fmt", "yuv420p",
+         "-c:a", "aac", "-b:a", "192k", "-ar", "44100", "-ac", "2",
+         str(out)]
+    )
+    return out
+
+
+def build_voiced_clip(
+    visual: Path,
+    is_image: bool,
+    audio: Path,
+    duration: float,
+    res: tuple[int, int],
+    fps: int,
+    out: Path,
+) -> Path:
+    """One narrated segment: a stock clip or infographic card + a voice track."""
+    w, h = res
+    if is_image:
+        vin = ["-loop", "1", "-i", str(visual)]
+        # slow zoom on the card so it isn't a static frame
+        vf = (f"scale={w}:{h}:force_original_aspect_ratio=increase,crop={w}:{h},"
+              f"zoompan=z='min(zoom+0.0006,1.10)':d={int(duration*fps)}:s={w}x{h},"
+              f"fps={fps},setsar=1")
+    else:
+        vin = ["-stream_loop", "-1", "-i", str(visual)]
+        vf = (f"scale={w}:{h}:force_original_aspect_ratio=increase,"
+              f"crop={w}:{h},fps={fps},setsar=1")
+    ff.run(
+        [*vin, "-i", str(audio),
+         "-vf", vf, "-t", f"{duration:.3f}",
+         "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-pix_fmt", "yuv420p",
+         "-c:a", "aac", "-b:a", "192k", "-ar", "44100", "-ac", "2",
+         "-map", "0:v", "-map", "1:a", "-shortest", str(out)]
+    )
+    return out
+
+
+def concat_av(files: list[Path], out: Path, workdir: Path) -> Path:
+    """Concatenate uniform AV segments (re-encode for safety)."""
+    listfile = workdir / "news_concat.txt"
+    listfile.write_text(
+        "\n".join(f"file '{f.resolve()}'" for f in files), encoding="utf-8"
+    )
+    ff.run(
+        ["-f", "concat", "-safe", "0", "-i", str(listfile),
+         "-c:v", "libx264", "-preset", "medium", "-crf", "20", "-pix_fmt", "yuv420p",
+         "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", str(out)]
+    )
+    return out

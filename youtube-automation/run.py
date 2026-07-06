@@ -29,7 +29,8 @@ def main() -> None:
 
     sp = sub.add_parser("produce", help="produce a full video package")
     sp.add_argument("--topic", help="use this exact topic instead of ideation")
-    sp.add_argument("--format", choices=["long", "short"], default="long")
+    sp.add_argument("--format", choices=["long", "short", "news"], default="news",
+                    help="news = daily AI-news avatar show; long/short = scripted niche video")
     sp.add_argument("--tts", choices=["edge", "elevenlabs", "silent"],
                     help="override TTS provider (silent = offline test)")
     sp.add_argument("--keep-work", action="store_true",
@@ -46,9 +47,10 @@ def main() -> None:
                     help="allow uploading demo-mode packages (not recommended)")
 
     sp = sub.add_parser("daily", help="produce; upload too when auto_upload: true")
-    sp.add_argument("--format", choices=["long", "short"], default="long")
+    sp.add_argument("--format", choices=["long", "short", "news"], default="news")
 
     sub.add_parser("auth", help="run the one-time YouTube OAuth flow")
+    sub.add_parser("avatars", help="list your HeyGen avatar and voice IDs")
     sub.add_parser("status", help="show channel automation status")
 
     args = p.parse_args()
@@ -61,8 +63,11 @@ def main() -> None:
             print(f"Angle:      {idea['angle']}")
 
     elif args.cmd == "produce":
-        pipeline.produce(cfg, topic_override=args.topic, fmt=args.format,
-                         tts_provider=args.tts, keep_work=args.keep_work)
+        if args.format == "news":
+            pipeline.produce_news(cfg, tts_provider=args.tts, keep_work=args.keep_work)
+        else:
+            pipeline.produce(cfg, topic_override=args.topic, fmt=args.format,
+                             tts_provider=args.tts, keep_work=args.keep_work)
 
     elif args.cmd == "upload":
         folder = pipeline.latest_production() if args.latest else OUTPUT_DIR / args.folder
@@ -72,7 +77,10 @@ def main() -> None:
                         schedule_next=args.schedule_next, force=args.force)
 
     elif args.cmd == "daily":
-        folder = pipeline.produce(cfg, fmt=args.format)
+        if args.format == "news":
+            folder = pipeline.produce_news(cfg)
+        else:
+            folder = pipeline.produce(cfg, fmt=args.format)
         if cfg.upload.get("auto_upload"):
             pipeline.upload(cfg, folder, schedule_next=True)
         else:
@@ -82,6 +90,17 @@ def main() -> None:
         from autotube import uploader
         uploader.authenticate(force=True)
         print("YouTube authorization stored.")
+
+    elif args.cmd == "avatars":
+        from autotube import avatar
+        if not avatar.available():
+            raise SystemExit("Set HEYGEN_API_KEY in .env first (see autotube/avatar.py).")
+        print("Avatars (use an avatar_id in config/channel.yaml):")
+        for a in avatar.list_avatars():
+            print(f"  {a['avatar_id']:40} {a['gender']:8} {a['name']}")
+        print("\nVoices (use a voice_id in config/channel.yaml):")
+        for v in avatar.list_voices():
+            print(f"  {v['voice_id']:40} {v['language']:14} {v['gender']:8} {v['name']}")
 
     elif args.cmd == "status":
         produced = state._load()["produced"]  # noqa: SLF001 (simple status readout)

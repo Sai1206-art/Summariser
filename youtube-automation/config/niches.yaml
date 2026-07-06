@@ -5,6 +5,26 @@
 # RPM figures are rough US-audience ranges for planning only.
 # ============================================================================
 
+ai_news:
+  label: "Daily AI News"
+  why: >
+    A daily AI-news show is one of the fastest-growing formats on YouTube: huge
+    search demand, fresh topic every day, and strong RPM (~$8-15, tech
+    audience). An avatar presenter + infographics reads as a real channel, not
+    "AI slop". Produced with live web research so every episode is current and
+    sourced. Uses `produce --format news`.
+  audience: "tech-curious 18-45 year olds who want a fast, trustworthy daily AI briefing"
+  tone: "sharp, energetic news-anchor delivery; hype-free; separate confirmed facts from speculation"
+  voice: en-US-GuyNeural            # used only in voice-fallback mode (no avatar key)
+  music_mood: "futuristic synth, subtle newsroom bed"
+  thumbnail:
+    bg_color: "#0a0e2a"
+    accent_color: "#4cc9f0"
+    text_color: "#ffffff"
+  visual_style: "server rooms, robots, neon circuits, data centers, code on screens, futuristic cities, labs"
+  hashtags: ["#ai", "#ainews", "#artificialintelligence", "#technews"]
+  # No topic_seeds: topics come from live web search each day.
+
 psychology:
   label: "Psychology & Human Behavior"
   why: >
