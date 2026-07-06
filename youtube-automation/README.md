@@ -59,7 +59,28 @@ python run.py auth                         # one-time YouTube OAuth
 python run.py upload --latest --schedule-next
 ```
 
-### Daily automation
+### Run it in the cloud (recommended)
+
+`.github/workflows/youtube-daily.yml` produces a video **daily at 09:00 UTC on
+GitHub's servers** — no local machine needed. Setup:
+
+1. **Merge this branch to `main`** — scheduled workflows only fire from the
+   default branch. (Manual runs from the Actions tab work as soon as it's there.)
+2. **Add repository secrets** (Settings → Secrets and variables → Actions):
+   `ANTHROPIC_API_KEY`, `PEXELS_API_KEY` (and optionally `PIXABAY_API_KEY`).
+3. Each run attaches the finished package as a **workflow artifact** — download,
+   review, and publish it whenever you like.
+4. **Optional — publish straight from the cloud:** run `python run.py auth`
+   once locally, copy the contents of `state/youtube_token.json` into a
+   `YOUTUBE_TOKEN_JSON` secret, then either
+   - trigger manually with the *"Upload to YouTube"* checkbox, or
+   - set repository **variable** `AUTOTUBE_UPLOAD=true` so the daily scheduled
+     run uploads automatically to your next schedule slot from `channel.yaml`.
+
+Cloud runs commit `state/history.json` back to the repo, so topic history is
+shared — no repeated topics between cloud and local runs.
+
+### Or run it locally
 
 ```bash
 python run.py daily        # produce; uploads too if auto_upload: true in channel.yaml
@@ -67,9 +88,6 @@ python run.py daily        # produce; uploads too if auto_upload: true in channe
 
 Cron example (produce every day at 09:00, you review + upload from your phone
 later): `0 9 * * * cd /path/to/youtube-automation && .venv/bin/python run.py daily`
-
-A GitHub Actions workflow is included at `.github/workflows/youtube-daily.yml`
-(manual dispatch by default; uncomment the cron to schedule).
 
 ---
 

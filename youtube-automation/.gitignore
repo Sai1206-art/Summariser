@@ -1,7 +1,8 @@
 .env
 client_secret*.json
 output/
-state/
+state/*
+!state/history.json
 assets/music/*
 !assets/music/.gitkeep
 __pycache__/

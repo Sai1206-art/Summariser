@@ -14,6 +14,7 @@ uploads/day maximum on default quota.
 from __future__ import annotations
 
 import json
+import os
 from datetime import datetime, time, timedelta, timezone
 from pathlib import Path
 from typing import Any
@@ -47,6 +48,12 @@ def authenticate(force: bool = False):
     if creds and creds.expired and creds.refresh_token:
         creds.refresh(Request())
     elif not creds or not creds.valid or force:
+        if os.environ.get("CI"):
+            raise SystemExit(
+                "No valid YouTube token in CI. Run `python run.py auth` locally "
+                "once and store state/youtube_token.json as the YOUTUBE_TOKEN_JSON "
+                "repository secret."
+            )
         secrets = _secrets_path()
         if not secrets.exists():
             raise SystemExit(
