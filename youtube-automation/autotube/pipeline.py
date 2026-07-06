@@ -149,6 +149,10 @@ def produce_news(
         json.dump(script, f, indent=2, ensure_ascii=False)
 
     print("[2/6] Building segments...")
+    style_terms = [
+        s.strip() for s in cfg.niche.get("visual_style", "technology").split(",") if s.strip()
+    ] or ["technology"]
+    used_clips: set[str] = set()
     seg_files: list[Path] = []
     total = 0.0
     for i, seg in enumerate(segs):
@@ -174,12 +178,13 @@ def produce_news(
                 assemble.build_voiced_clip(card, True, audio["audio"], dur, res, fps, out_i)
                 print(f"  seg {i + 1}/{len(segs)}: infographic ({infog[:24]})")
             else:
+                vq = (seg.get("visual_query") or "").strip() or style_terms[i % len(style_terms)]
                 clip = visuals.fetch_scene_clips(
-                    [{"visual_query": seg.get("visual_query", "technology")}],
-                    [dur], cfg, workdir / f"clip_{i:03d}",
+                    [{"visual_query": vq}], [dur], cfg, workdir / f"clip_{i:03d}",
+                    used=used_clips,
                 )[0]
                 assemble.build_voiced_clip(clip, False, audio["audio"], dur, res, fps, out_i)
-                print(f"  seg {i + 1}/{len(segs)}: b-roll ({seg.get('visual_query', '')})")
+                print(f"  seg {i + 1}/{len(segs)}: b-roll ({vq})")
         seg_files.append(out_i)
 
     if len(seg_files) < 2:

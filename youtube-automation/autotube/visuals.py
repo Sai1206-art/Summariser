@@ -108,11 +108,16 @@ def fetch_scene_clips(
     cfg: Config,
     workdir: Path,
     portrait: bool = False,
+    used: set[str] | None = None,
 ) -> list[Path]:
-    """Return one local video file per scene (>= narration duration where stock)."""
+    """Return one local video file per scene (>= narration duration where stock).
+
+    Pass a shared ``used`` set across calls to avoid repeating the same clip.
+    """
     workdir.mkdir(parents=True, exist_ok=True)
     res = tuple(cfg.shorts["resolution"] if portrait else cfg.video["resolution"])
-    used: set[str] = set()
+    if used is None:
+        used = set()
     clips: list[Path] = []
     have_keys = bool(env("PEXELS_API_KEY") or env("PIXABAY_API_KEY"))
     if not have_keys:

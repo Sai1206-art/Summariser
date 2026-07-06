@@ -61,12 +61,19 @@ Also produce: a curiosity-driven title (<=70 chars, no lies), thumbnail_text
 (<=4 words ALL CAPS), a stories[] list (headline, why_it_matters, source URL),
 and sources[] (the URLs you actually used).
 
+Every "broll" segment MUST include a specific, distinct "visual_query" (2-4
+concrete words) tailored to that story — never leave it blank and never reuse
+the same footage words across stories.
+
 Respond with ONLY this JSON:
 {{
   "title": "...",
   "thumbnail_text": "...",
   "stories": [{{"headline": "...", "why_it_matters": "...", "source": "..."}}],
-  "segments": [{{"kind": "avatar", "narration": "...", "visual_query": "...", "infographic": ""}}],
+  "segments": [
+    {{"kind": "avatar", "narration": "...", "visual_query": "data center servers", "infographic": ""}},
+    {{"kind": "broll", "narration": "...", "visual_query": "robotic arm factory", "infographic": "$150M raised"}}
+  ],
   "sources": ["..."]
 }}"""
 
