@@ -19,6 +19,15 @@
       "demo": true,
       "avatar": false,
       "produced_at": "2026-07-06T16:31:09.436993+00:00"
+    },
+    {
+      "topic": "AI news 20260706-1647",
+      "folder": "/home/runner/work/Summariser/Summariser/youtube-automation/output/20260706-1647-news-washington-wants-a-piece-of-openai-and-china-isn-t-waiting",
+      "format": "news",
+      "minutes": 3.11,
+      "demo": false,
+      "avatar": false,
+      "produced_at": "2026-07-06T16:51:43.658275+00:00"
     }
   ],
   "uploads": []
