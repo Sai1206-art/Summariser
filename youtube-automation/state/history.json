@@ -37,6 +37,15 @@
       "demo": false,
       "avatar": false,
       "produced_at": "2026-07-06T17:09:51.435370+00:00"
+    },
+    {
+      "topic": "AI news 20260707-1140",
+      "folder": "/home/runner/work/Summariser/Summariser/youtube-automation/output/20260707-1140-news-did-anthropic-just-overtake-openai-ai-s-big-week",
+      "format": "news",
+      "minutes": 3.78,
+      "demo": false,
+      "avatar": false,
+      "produced_at": "2026-07-07T11:45:47.721512+00:00"
     }
   ],
   "uploads": []
