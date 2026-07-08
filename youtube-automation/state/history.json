@@ -46,6 +46,15 @@
       "demo": false,
       "avatar": false,
       "produced_at": "2026-07-07T11:45:47.721512+00:00"
+    },
+    {
+      "topic": "AI news 20260708-1110",
+      "folder": "/home/runner/work/Summariser/Summariser/youtube-automation/output/20260708-1110-news-washington-just-changed-the-ai-rules-overnight",
+      "format": "news",
+      "minutes": 3.32,
+      "demo": false,
+      "avatar": false,
+      "produced_at": "2026-07-08T11:14:46.954684+00:00"
     }
   ],
   "uploads": []
